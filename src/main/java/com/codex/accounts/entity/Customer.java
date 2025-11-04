@@ -24,6 +24,6 @@ public class Customer extends BaseEntity {
   private Long customerId;
   private String name;
   private String email;
-  @Column(name = "phone_number")
-  private String phoneNumber;
+  @Column(name="mobile_number")
+  private String mobileNumber;
 }
