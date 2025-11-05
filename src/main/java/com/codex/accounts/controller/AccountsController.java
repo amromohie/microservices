@@ -6,6 +6,9 @@ import com.codex.accounts.constants.AccountsConstants;
 import com.codex.accounts.dto.CustomerDto;
 import com.codex.accounts.dto.ResponseDto;
 import com.codex.accounts.service.AccountsService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
@@ -26,9 +29,16 @@ import org.springframework.web.bind.annotation.RestController;
     produces = {APPLICATION_JSON_VALUE})
 @RequiredArgsConstructor
 @Validated
+@Tag(
+    name = "AccountsController",
+   description = "Http rest"
+)
 public class AccountsController {
   private final AccountsService accountsService;
-
+  @Operation(summary = "Create new account",
+      description = "Create new account"
+  )
+  @ApiResponse(responseCode = "201", description = "Created")
   @PostMapping("create")
   public ResponseEntity<ResponseDto> createAccount(@Valid @RequestBody CustomerDto customerDto) {
     accountsService.createAccount(customerDto);
